@@ -1,0 +1,15 @@
+create table settings (id int primary key default 1 check (id=1), data jsonb not null default '{}', updated_at timestamptz not null default now());
+create table products (id text primary key, data jsonb not null, active boolean not null default true, sort int not null default 0, updated_at timestamptz not null default now());
+create table product_costs (product_id text primary key, cost numeric not null, po_id text, updated_at timestamptz not null default now());
+create table orders (id text primary key, created_at timestamptz not null default now(), status text not null default 'review', pay_status text not null default 'pending', paid boolean not null default false, items jsonb not null, subtotal int not null, discount int not null default 0, discount_label text, code text, total int not null, name text not null, phone text not null, email text not null, address text not null, island text not null, deliver_day date, deliver_slot text, note text, marketing boolean not null default false, receipt_key text, receipt_type text, reject_reason text, driver jsonb, stock_out boolean not null default false, request jsonb, refunded int not null default 0, log jsonb not null default '[]', emails jsonb not null default '{}', verified_at timestamptz, delivered_at timestamptz, ip text);
+create table reviews (order_id text not null references orders(id) on delete cascade, product_id text not null, rating int not null check (rating between 1 and 5), fit text, title text, body text not null, name text, size text, hidden boolean not null default false, created_at timestamptz not null default now(), primary key (order_id, product_id));
+create table notify_requests (id bigserial primary key, product_id text not null, ck text not null, size text not null, contact text not null, created_at timestamptz not null default now(), unique (product_id, ck, size, contact));
+create table subscribers (contact text primary key, created_at timestamptz not null default now());
+create table suppliers (id bigserial primary key, name text not null, platform text, contact text, notes text);
+create table purchase_orders (id text primary key, data jsonb not null, status text not null default 'draft', created_at timestamptz not null default now());
+create table admin_users (id serial primary key, username text unique not null, pass_hash text not null, created_at timestamptz not null default now());
+create table admin_sessions (token_hash text primary key, admin_id int not null references admin_users(id) on delete cascade, created_at timestamptz not null default now(), expires_at timestamptz not null, ip text);
+create table rate_limits (key text primary key, count int not null, reset_at timestamptz not null);
+create table audit_log (id bigserial primary key, at timestamptz not null default now(), actor text, action text not null, detail jsonb);
+create table customer_bonus (phone text primary key, points int not null default 0);
+insert into settings (id, data) values (1, '{"bank":{"bank":"Bank of Maldives","acct":"7730000123456","holder":"Gym Babes"}}');

@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><title>Gym Babes HQ</title><link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: app-like storefront. Sticky header + mobile bottom tab bar; photo-led grids; back office behind the same shell. */
+:root{
+  --bg:#fff8fb; --surface:#ffffff; --sunk:#fbeef4; --ink:#21101a; --muted:#7a6270; --line:#f0dbe6;
+  --brand:#e5007e; --brand-strong:#c2006b; --on-brand:#ffffff; --blush:#ffe3f0;
+  --ok:#17845a; --ok-bg:#e3f5ec; --warn:#a96a00; --warn-bg:#fdf1dc; --bad:#c42c3c; --bad-bg:#fde6e8; --info:#3456b8; --info-bg:#e6ecfb;
+  --photo:#ffffff; --shadow:0 10px 30px rgba(84,10,52,.10);
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r:16px; --r-s:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#150a10; --surface:#1f1118; --sunk:#29161f; --ink:#fbeef5; --muted:#c3a6b6; --line:#3b2330;
+  --brand:#ff4aa8; --brand-strong:#ff73bc; --on-brand:#1b0712; --blush:#3a1428;
+  --ok:#53d39a; --ok-bg:#163326; --warn:#f3b552; --warn-bg:#3a2a10; --bad:#ff7b88; --bad-bg:#3d1720; --info:#8fa9ff; --info-bg:#1b2443;
+  --photo:#f6f1f3; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#150a10; --surface:#1f1118; --sunk:#29161f; --ink:#fbeef5; --muted:#c3a6b6; --line:#3b2330;
+  --brand:#ff4aa8; --brand-strong:#ff73bc; --on-brand:#1b0712; --blush:#3a1428;
+  --ok:#53d39a; --ok-bg:#163326; --warn:#f3b552; --warn-bg:#3a2a10; --bad:#ff7b88; --bad-bg:#3d1720; --info:#8fa9ff; --info-bg:#1b2443;
+  --photo:#f6f1f3; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;margin:0;
+  padding-left:max(0px, env(safe-area-inset-left,0px));padding-right:max(0px, env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;line-height:1.08;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* logo: real wordmark recoloured by token */
+.logo{display:inline-block;aspect-ratio:684/367;background:var(--brand);
+  -webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
+
+/* announcement */
+.announce{background:var(--brand);color:var(--on-brand);font-size:13px;font-weight:600}
+.announce .wrap{display:flex;align-items:center;gap:10px;justify-content:center;padding-block:9px;text-align:center}
+.announce a{color:inherit;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;cursor:pointer}
+.announce .x{margin-left:auto;opacity:.8;font-size:18px;line-height:1;padding:0 4px;color:inherit}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:20px;height:66px}
+.bar .logo{height:40px}
+.nav{display:flex;gap:4px;margin-left:12px}
+.nav button{padding:8px 12px;border-radius:999px;font-weight:600;font-size:14px;color:var(--muted)}
+.nav button[aria-current="page"],.nav button:hover{color:var(--ink);background:var(--sunk)}
+.tools{margin-left:auto;display:flex;align-items:center;gap:6px}
+.icon-btn{width:42px;height:42px;border-radius:999px;display:grid;place-items:center;position:relative;color:var(--ink)}
+.icon-btn:hover{background:var(--sunk)}
+.icon-btn svg{width:22px;height:22px}
+.count{position:absolute;top:3px;right:2px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--brand);color:var(--on-brand);font-size:11px;font-weight:700;display:grid;place-items:center}
+.count[data-n="0"]{display:none}
+.admin-pill{font-size:12px;font-weight:700;padding:7px 12px;border-radius:999px;border:1.5px solid var(--ink)}
+@media (max-width:820px){.nav,.tools .hide-m{display:none}.bar{height:58px}.bar .logo{height:34px}}
+
+/* bottom tabs (mobile) */
+.tabs{display:none}
+@media (max-width:820px){
+  .tabs{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--surface);border-top:1px solid var(--line);
+    padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
+  .tabs button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--muted);padding:6px 0;position:relative}
+  .tabs button svg{width:22px;height:22px}
+  .tabs button[aria-current="page"]{color:var(--brand)}
+  .tabs .count{top:0;right:calc(50% - 22px)}
+  main{padding-bottom:84px}
+}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;background:var(--brand);color:var(--on-brand);transition:transform .12s, background .15s}
+.btn:hover{background:var(--brand-strong)}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.btn.dark{background:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.sm{height:38px;padding:0 16px;font-size:13px}
+.btn.block{width:100%}
+.link{font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+
+/* hero */
+.hero{padding-block:28px 12px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:18px}
+.hero .logo{width:min(380px,80%)}
+.hero h1{font-size:clamp(30px,4.4vw,52px);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero p.lede{font-size:17px;color:var(--muted);max-width:44ch}
+.hero .ctas{display:flex;gap:10px;flex-wrap:wrap}
+.collage{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:1/1;max-width:100%}
+.collage button{border-radius:22px;overflow:hidden;background:var(--photo);position:relative}
+.collage button:first-child{grid-row:span 2}
+.collage img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.collage button:hover img{transform:scale(1.04)}
+.collage .chip{position:absolute;left:12px;bottom:12px;background:var(--surface);color:var(--ink);font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;box-shadow:var(--shadow)}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.collage{aspect-ratio:4/3}.hero{padding-top:20px}}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-block:22px 8px}
+.trust div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;font-size:14px}
+.trust b{display:block;font-size:14px}
+.trust svg{flex:none;width:26px;height:26px;color:var(--brand)}
+@media (max-width:820px){.trust{grid-template-columns:1fr}}
+
+section.block{padding-block:34px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(24px,3vw,34px);font-weight:800}
+
+/* category tiles */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cat{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:var(--photo);text-align:left}
+.cat img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.cat:hover img{transform:scale(1.04)}
+.cat .lab{position:absolute;inset:auto 12px 12px 12px;background:var(--surface);color:var(--ink);border-radius:14px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cat .lab b{font-family:var(--f-display);font-size:18px}
+.cat .lab span{font-size:12px;color:var(--muted)}
+@media (max-width:820px){.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.cat .lab{inset:auto 6px 6px 6px;padding:8px 9px;border-radius:10px}.cat .lab b{font-size:13px}.cat .lab span,.cat .lab .arr{display:none}}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 16px}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 10px}}
+.card{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ph{position:relative;border-radius:18px;overflow:hidden;background:var(--photo);aspect-ratio:720/860;max-width:100%}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.card:hover .ph img{transform:scale(1.035)}
+.ph .badge{position:absolute;left:10px;top:10px}
+.card .heart{position:absolute;right:8px;top:8px;width:36px;height:36px;border-radius:999px;background:rgba(255,255,255,.92);display:grid;place-items:center;color:#21101a}
+.card .heart svg{width:18px;height:18px}
+.card .heart[aria-pressed="true"]{color:#e5007e}
+.card .heart[aria-pressed="true"] svg{fill:currentColor}
+.ph .soldout{position:absolute;inset:auto 10px 10px 10px;background:rgba(33,16,26,.82);color:#fff;font-size:12px;font-weight:700;text-align:center;border-radius:999px;padding:6px}
+.card .meta{display:flex;flex-direction:column;gap:4px;text-align:left}
+.card .nm{font-weight:600;font-size:15px;line-height:1.3}
+.card .pr{display:flex;gap:8px;align-items:baseline;font-weight:700}
+.card .pr s{color:var(--muted);font-weight:500;font-size:13px}
+.dots{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.dots i{width:13px;height:13px;border-radius:50%;border:1px solid color-mix(in srgb,var(--ink) 18%,transparent)}
+.dots small{font-size:12px;color:var(--muted);margin-left:2px}
+.stars{display:inline-flex;gap:1px;color:var(--brand);vertical-align:middle}
+.stars svg{width:14px;height:14px}
+.rate{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:var(--brand);color:var(--on-brand)}
+.badge.soft{background:var(--blush);color:var(--brand-strong)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}.pill.warn{background:var(--warn-bg);color:var(--warn)}.pill.bad{background:var(--bad-bg);color:var(--bad)}.pill.info{background:var(--info-bg);color:var(--info)}.pill.mute{background:var(--sunk);color:var(--muted)}
+
+/* promo strips */
+.promos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.promo{border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px;min-height:200px;position:relative;overflow:hidden}
+.promo h3{font-size:26px;font-weight:800;max-width:16ch}
+.promo p{max-width:40ch}
+.promo.pink{background:var(--brand);color:var(--on-brand)}
+.promo.pink .btn{background:var(--on-brand);color:var(--brand)}
+.promo.soft{background:var(--blush);color:var(--ink)}
+.promo .stripes{position:absolute;right:-50px;top:-50px;width:200px;height:200px;border-radius:50%;opacity:.35;
+  background:repeating-linear-gradient(135deg,currentColor 0 6px,transparent 6px 15px)}
+@media (max-width:820px){.promos{grid-template-columns:1fr}}
+
+/* shop page */
+.shop-head{padding-block:26px 6px;display:flex;flex-direction:column;gap:14px}
+.shop-head h1{font-size:clamp(28px,4vw,42px);font-weight:800}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.fchip{flex:none;height:38px;padding:0 15px;border-radius:999px;border:1.5px solid var(--line);font-weight:600;font-size:13.5px;background:var(--surface)}
+.fchip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.shop-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface)}
+.search input{border:0;outline:0;background:transparent;flex:1;min-width:0}
+.search svg{width:18px;height:18px;color:var(--muted)}
+select.sel,input.inp,textarea.inp{height:44px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);padding:0 12px;min-width:0}
+textarea.inp{height:auto;padding:10px 12px;resize:vertical}
+input.inp:focus,select.sel:focus,textarea.inp:focus{outline:none;border-color:var(--brand)}
+.empty{padding:50px 20px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:12px;align-items:center}
+
+/* product page */
+.pdp{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;padding-block:22px 10px}
+@media (max-width:820px){.pdp{grid-template-columns:1fr;gap:18px}}
+.gallery{display:flex;flex-direction:column;gap:10px;min-width:0}
+.gallery .main{border-radius:24px;overflow:hidden;background:var(--photo);aspect-ratio:720/860;max-width:100%}
+.gallery .main img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs{display:flex;gap:8px;overflow-x:auto}
+.thumbs button{flex:none;width:70px;aspect-ratio:720/860;border-radius:12px;overflow:hidden;background:var(--photo);border:2px solid transparent}
+.thumbs button[aria-pressed="true"]{border-color:var(--brand)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.buy{display:flex;flex-direction:column;gap:16px;min-width:0}
+.crumbs{font-size:13px;color:var(--muted)}
+.crumbs button{text-decoration:underline;text-underline-offset:3px}
+.buy h1{font-size:clamp(28px,3.4vw,40px);font-weight:800}
+.price-l{display:flex;gap:10px;align-items:baseline;font-size:22px;font-weight:800}
+.price-l s{font-size:16px;color:var(--muted);font-weight:500}
+.opt-lab{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:700;margin-bottom:8px}
+.opt-lab span{font-weight:500;color:var(--muted)}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatches button{width:38px;height:38px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 1.5px var(--line)}
+.swatches button[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--brand)}
+.sizes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.sizes button{height:46px;border-radius:12px;border:1.5px solid var(--line);font-weight:700;background:var(--surface);position:relative}
+.sizes button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sizes button.out{color:var(--muted);background:var(--sunk);text-decoration:line-through}
+.sizes button .low{position:absolute;left:0;right:0;bottom:-17px;font-size:10px;color:var(--warn);font-weight:700;text-decoration:none}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;height:50px}
+.qty button{width:44px;height:100%;font-size:20px}
+.qty span{min-width:26px;text-align:center;font-weight:700}
+.buy-row{display:flex;gap:10px;align-items:center}
+.buy-row .btn{flex:1}
+.perks-l{display:grid;gap:8px;font-size:14px;background:var(--sunk);border-radius:var(--r);padding:14px 16px}
+.perks-l div{display:flex;gap:10px;align-items:flex-start}
+.perks-l svg{flex:none;width:18px;height:18px;color:var(--brand);margin-top:2px}
+details.acc{border-top:1px solid var(--line)}
+details.acc:last-of-type{border-bottom:1px solid var(--line)}
+details.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-weight:700}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font-size:22px;font-weight:400;color:var(--muted)}
+details.acc[open] summary::after{content:"–"}
+details.acc .body{padding-bottom:16px;color:var(--muted);display:flex;flex-direction:column;gap:10px}
+details.acc ul{margin:0;padding-left:18px}
+table.sg{border-collapse:collapse;width:100%;font-size:13px}
+table.sg th,table.sg td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left}
+table.sg th{color:var(--ink)}
+.fitbar{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:12px;color:var(--muted)}
+.fitbar .track{height:6px;border-radius:99px;background:var(--line);position:relative}
+.fitbar .track i{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;background:var(--brand);transform:translateX(-50%)}
+
+/* reviews */
+.rev-wrap{display:grid;grid-template-columns:280px 1fr;gap:30px}
+@media (max-width:820px){.rev-wrap{grid-template-columns:1fr}}
+.rev-sum{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;align-self:start}
+.rev-sum .big{font-family:var(--f-display);font-size:46px;font-weight:800;line-height:1}
+.rev-list{display:flex;flex-direction:column}
+.rev{padding:18px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.rev .who{font-size:13px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rev h4{font-family:var(--f-body);font-size:15px;letter-spacing:0}
+.rev p{max-width:65ch}
+.star-in{display:flex;gap:4px}
+.star-in button{width:34px;height:34px;color:var(--line)}
+.star-in button.on{color:var(--brand)}
+.star-in svg{width:30px;height:30px}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(20,6,14,.5);z-index:70}
+.drawer{position:fixed;z-index:80;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--surface);display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .25s ease;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.drawer.on{transform:none}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.d-head h2{font-size:22px;font-weight:800}
+.d-body{flex:1;overflow:auto;padding:4px 20px 16px}
+.d-foot{border-top:1px solid var(--line);padding:16px 20px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.line{display:grid;grid-template-columns:72px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.line .ph{border-radius:12px}
+.line .t{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:14px}
+.line .t b{font-weight:600}
+.line .mini-q{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;margin-top:4px;width:max-content}
+.line .mini-q button{width:30px;height:28px}
+.line .mini-q span{min-width:20px;text-align:center;font-size:13px;font-weight:700}
+.rm{font-size:12px;color:var(--muted);text-decoration:underline}
+.sumrow{display:flex;justify-content:space-between;font-size:14px}
+.sumrow.total{font-size:18px;font-weight:800;padding-top:6px}
+.sumrow.disc{color:var(--ok);font-weight:600}
+.progress{background:var(--sunk);border-radius:var(--r-s);padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:8px}
+.progress .track{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.progress .track i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.code-row{display:flex;gap:8px}
+.code-row input{flex:1;text-transform:uppercase}
+
+/* forms */
+.form{display:grid;gap:12px}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.form .row2{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:13px;font-weight:700}
+.field .inp,.field .sel{width:100%}
+.radio-card{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;background:var(--surface)}
+.radio-card:has(input:checked){border-color:var(--brand);background:var(--blush)}
+.radio-card input{margin-top:3px;accent-color:var(--brand)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.check input{margin-top:3px;accent-color:var(--brand)}
+.err{color:var(--bad);font-size:13px;font-weight:600}
+
+/* checkout + account layout */
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;padding-block:24px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h2{font-size:20px;font-weight:800}
+.panel h3{font-size:16px;font-weight:700;font-family:var(--f-body);letter-spacing:0}
+.notice{border-radius:var(--r-s);padding:12px 14px;font-size:14px;background:var(--info-bg);color:var(--ink)}
+.notice.warn{background:var(--warn-bg)}
+.copybox{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1.5px dashed var(--brand);border-radius:12px;padding:10px 12px;font-weight:700;font-variant-numeric:tabular-nums}
+.copybox span{min-width:0;overflow-wrap:anywhere}
+
+.order{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.order-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.steps div{display:flex;flex-direction:column;gap:6px;font-size:11.5px;color:var(--muted)}
+.steps div i{height:5px;border-radius:99px;background:var(--line)}
+.steps div.on{color:var(--ink);font-weight:600}
+.steps div.on i{background:var(--brand)}
+.mini-items{display:flex;gap:8px;flex-wrap:wrap}
+.mini-items .ph{width:52px;border-radius:10px}
+.points-card{background:var(--brand);color:var(--on-brand);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:8px}
+.points-card .big{font-family:var(--f-display);font-size:40px;font-weight:800;line-height:1}
+
+/* footer */
+footer.foot{background:var(--surface);border-top:1px solid var(--line);margin-top:30px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:26px;padding-block:36px}
+.foot-grid h4{font-family:var(--f-body);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:14px;color:var(--muted)}
+.foot-grid button{text-align:left}
+.foot-grid .logo{height:46px}
+.news{display:flex;gap:8px}
+.news input{flex:1}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}.foot-grid > :first-child,.foot-grid > :last-child{grid-column:span 2}}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:600;font-size:14px;z-index:90;transition:transform .25s;max-width:calc(100% - 32px);text-align:center}
+.toast.on{transform:translate(-50%,0)}
+@media (max-width:820px){.toast{bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
+
+/* ===== admin ===== */
+.adm{padding-block:22px 40px;display:flex;flex-direction:column;gap:18px}
+.adm-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.adm-head h1{font-size:30px;font-weight:800}
+.adm-tabs{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+.adm-tabs button{flex:none;padding:10px 14px;font-weight:700;font-size:14px;color:var(--muted);border-bottom:2.5px solid transparent;margin-bottom:-1px;display:flex;gap:6px;align-items:center}
+.adm-tabs button[aria-current="page"]{color:var(--ink);border-color:var(--brand)}
+.adm-tabs .pill{padding:1px 7px;font-size:11px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.kpi .v{font-family:var(--f-display);font-size:26px;font-weight:800;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:12.5px;color:var(--muted);font-weight:600}
+.kpi.alert{border-color:var(--warn);background:var(--warn-bg)}
+.bars{display:flex;align-items:flex-end;gap:5px;height:150px;padding-top:10px;border-bottom:1px solid var(--line)}
+.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px;min-width:0}
+.bars i{display:block;width:100%;max-width:26px;background:var(--brand);border-radius:6px 6px 0 0;min-height:2px}
+.bars i.zero{background:var(--line)}
+.bars-x{display:flex;gap:5px;font-size:10px;color:var(--muted)}
+.bars-x span{flex:1;text-align:center;min-width:0}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table.tbl{border-collapse:collapse;width:100%;font-size:13.5px}
+table.tbl th{text-align:left;font-size:12px;color:var(--muted);font-weight:700;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--sunk)}
+table.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.tbl tr:last-child td{border-bottom:0}
+table.tbl td.r,table.tbl th.r{text-align:right;font-variant-numeric:tabular-nums}
+.inv-grid{display:grid;grid-template-columns:110px repeat(5,minmax(52px,1fr));gap:6px;align-items:center;font-size:13px}
+.inv-grid input{width:100%;height:36px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);text-align:center;font-variant-numeric:tabular-nums}
+.inv-grid input.low{border-color:var(--warn);background:var(--warn-bg)}
+.inv-grid input.zero{border-color:var(--bad);background:var(--bad-bg)}
+.inv-card{display:grid;grid-template-columns:90px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.inv-card .ph{border-radius:12px}
+.inv-card .body{display:flex;flex-direction:column;gap:12px;min-width:0}
+.inv-top{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.inv-top .field{width:120px}
+.inv-top .field.wide{flex:1;min-width:180px;width:auto}
+@media (max-width:640px){.inv-card{grid-template-columns:1fr}.inv-card > .ph{width:90px}}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;cursor:pointer}
+.toggle input{width:40px;height:22px;appearance:none;background:var(--line);border-radius:99px;position:relative;cursor:pointer;transition:background .15s;margin:0}
+.toggle input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}
+.toggle input:checked{background:var(--ok)}
+.toggle input:checked::after{left:21px}
+.req{border:1px solid var(--line);border-left-width:4px;border-radius:12px;padding:16px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.req.open{border-left-color:var(--warn)}.req.done{border-left-color:var(--ok)}.req.no{border-left-color:var(--muted)}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.inline-confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--bad-bg);padding:8px 10px;border-radius:10px;font-size:13px}
+.adm-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:900px){.adm-grid2{grid-template-columns:1fr}}
+.banner-prev{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.code-list{display:flex;flex-direction:column;gap:8px}
+.code-item{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:12px;padding:10px 12px;flex-wrap:wrap}
+.code-item b{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head><body>
+<header class="top"><div class="wrap bar"><span class="logo" role="img" aria-label="Gym Babes"></span><b style="font-family:var(--f-display)">Back office</b></div></header>
+<main id="app"></main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="cfg">__CONFIG__</script>
+<script>
+const CONFIG=JSON.parse(document.getElementById('cfg').textContent||'{}');
+const img=src=>/^https?:/.test(src||'')?src:(CONFIG.img||'')+src;
+document.documentElement.style.setProperty('--logo',`url(${img('img/logo.png')})`);
+let CATALOG=[];
+const SIZES=["XS","S","M","L","XL"];
+/* ================= HELPERS ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const mvr=n=>"MVR "+Math.round(n).toLocaleString("en-US");
+const fmtDate=t=>new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+const fmtShort=t=>new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2600)}
+const ICON={
+ star:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',
+ starO:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',
+ heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-9.2-8.6C1.2 8.2 3 4.5 6.6 4.5c2.1 0 3.6 1.2 4.4 2.6.8-1.4 2.3-2.6 4.4-2.6 3.6 0 5.4 3.7 3.8 6.9C19 15.6 12 20 12 20z"/></svg>',
+ truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>',
+ bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg>',
+ chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+ ruler:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 16L16 3l5 5L8 21z"/><path d="M7 12l2 2M10 9l2 2M13 6l2 2"/></svg>',
+ search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+ shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>'
+};
+const stars=(r,size)=>'<span class="stars" aria-label="'+r.toFixed(1)+' out of 5">'+[1,2,3,4,5].map(i=>i<=Math.round(r)?ICON.star:ICON.starO).join("")+"</span>";
+
+function stockOf(p,ck,sz){const v=p.stock?.[ck]?.[sz];return (v===undefined||v===null||v==="")?null:Number(v)}
+function colourAvail(p,ck){return SIZES.some(s=>{const v=stockOf(p,ck,s);return v===null||v>0})}
+function inStock(p){return p.colours.some(c=>colourAvail(p,c.k))}
+const dot=c=>`<i title="${esc(c.n)}" style="background:${c.hex2?`linear-gradient(135deg,${c.hex} 50%,${c.hex2} 50%)`:c.hex}"></i>`;
+
+async function copyText(t){try{await navigator.clipboard.writeText(t);return true}catch(e){try{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();const ok=document.execCommand("copy");a.remove();return ok}catch(_){return false}}}
+
+const DEF_SETTINGS={banner:{on:true,text:"",link:"shop",cta:"Shop now"},codes:[],instagram:"gymbabes.mv",whatsapp:"",bank:{bank:"",acct:"",holder:""},drivers:[],pointsPer:10,setDeal:10,lowStock:2};
+const S={settings:structuredClone(DEF_SETTINGS),admTab:"overview",pending:{},costs:{},pos:{},suppliers:{},po:null,ov:{},custs:{},sel:{}};
+const prod=id=>products(true).find(p=>p.id===id);
+function go(){}
+function fmtSlot(o){if(!o.deliverDay)return o.deliverSlot||"Any time";return new Date(o.deliverDay+"T00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"})+", "+(o.deliverSlot||"")}
+function orderText(o){return `Gym Babes order ${o.id}\n\n`+o.items.map((i,n)=>`${n+1}. ${i.name} | ${i.colour} | ${i.size} | x${i.qty} | ${mvr(i.price*i.qty)}`).join("\n")+`\n\nTotal: ${mvr(o.total)}\nName: ${o.name}\nPhone: ${o.phone}\nEmail: ${o.email||"-"}\nAddress: ${o.address}, ${o.island}\nPreferred delivery: ${fmtSlot(o)}`}
+/* ================= BACK OFFICE ================= */
+function allOrders(){const out=[];for(const [uid,c] of Object.entries(S.custs))for(const o of c.orders||[])out.push({...o,status:normStatus(o.status),uid});return out.sort((a,b)=>b.at-a.at)}
+function vAdmin(){
+  const O=allOrders(), openReq=O.filter(o=>o.request?.status==="open").length, toCheck=O.filter(o=>o.status==="review"&&o.payStatus!=="rejected").length, toSend=O.filter(o=>o.status==="confirmed").length;
+  const incoming=Object.values(S.pos).filter(p=>["ordered","shipped"].includes(p.status)).length;
+  const tabs=[["overview","Overview"],["orders","Orders",toCheck+toSend],["delivery","Delivery"],["inventory","Inventory"],["procurement","Procurement",incoming],["requests","Refunds & disputes",openReq],["reviews","Reviews"],["customers","Customers"],["marketing","Marketing"],["settings","Settings"]];
+  const t=S.admTab;
+  return `<div class="wrap adm">
+    <div class="adm-head"><div><p class="eyebrow">Back office · signed in as ${esc(S.user||"")}</p><h1>Gym Babes HQ</h1></div><span class="row-actions"><a class="btn ghost sm" href="${esc(CONFIG.shop||"/")}" target="_blank" rel="noopener">View shop</a><button class="btn ghost sm" onclick="logout()">Sign out</button></span></div>
+    <div class="adm-tabs" role="tablist">${tabs.map(([k,l,n])=>`<button role="tab" aria-current="${t===k?"page":"false"}" onclick="S.admTab='${k}';render()">${l}${n?` <span class="pill warn">${n}</span>`:""}</button>`).join("")}</div>
+    <div id="admBody">${({overview:aOverview,orders:aOrders,delivery:aDelivery,inventory:aInventory,procurement:aProcurement,requests:aRequests,reviews:aReviews,customers:aCustomers,marketing:aMarketing,settings:aSettings})[t](O)}</div>
+  </div>`;
+}
+function aOverview(O){
+  const live=O.filter(o=>o.status!=="cancelled");
+  const gross=live.reduce((a,o)=>a+o.total,0), refunds=O.reduce((a,o)=>a+(o.refunded||0),0);
+  const paid=live.filter(o=>o.paid).reduce((a,o)=>a+o.total,0);
+  const aov=live.length?gross/live.length:0;
+  const toCheck=O.filter(o=>o.status==="review"&&o.payStatus!=="rejected").length, toSend=O.filter(o=>o.status==="confirmed").length;
+  const costed=live.filter(o=>o.paid&&o.items.every(i=>S.costs[i.pid]?.cost));
+  const cogs=costed.reduce((a,o)=>a+o.items.reduce((b,i)=>b+S.costs[i.pid].cost*i.qty,0)+(o.driver?.fare||0),0), rev=costed.reduce((a,o)=>a+o.total-(o.refunded||0),0);
+  const fares=live.reduce((a,o)=>a+(+o.driver?.fare||0),0);
+  const low=[];products(true).forEach(p=>p.colours.forEach(c=>SIZES.forEach(s=>{const v=stockOf(p,c.k,s);if(v!==null&&v<=S.settings.lowStock)low.push({p,c,s,v})})));
+  const days=[...Array(14)].map((_,i)=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-13+i);return d});
+  const byDay=days.map(d=>live.filter(o=>o.at>=d.getTime()&&o.at<d.getTime()+864e5).reduce((a,o)=>a+o.total,0));
+  const mx=Math.max(1,...byDay);
+  const units={};live.forEach(o=>o.items.forEach(i=>units[i.pid]=(units[i.pid]||0)+i.qty));
+  const top=Object.entries(units).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const untracked=products(true).filter(p=>!p.stock).length;
+  const placeholders=CATALOG.filter(p=>!(S.ov[p.id]?.price)).length;
+  return `<div style="display:flex;flex-direction:column;gap:16px">
+   ${placeholders?`<div class="notice warn"><b>${placeholders} products still use starter prices.</b> Set your real prices in Inventory before you share the shop.</div>`:""}
+   ${untracked?`<div class="notice">${untracked} products have no stock counts yet, so they always show as available. Add counts in Inventory to switch on low-stock alerts and sold-out sizes.</div>`:""}
+   <div class="kpis">
+     <div class="kpi"><span class="l">Gross sales</span><span class="v">${mvr(gross)}</span><span class="muted" style="font-size:12px">${live.length} order${live.length===1?"":"s"}</span></div>
+     <div class="kpi"><span class="l">Payments received</span><span class="v">${mvr(paid)}</span><span class="muted" style="font-size:12px">AOV ${mvr(aov)} · delivery ${mvr(fares)} · refunded ${mvr(refunds)}</span></div>
+     <div class="kpi"><span class="l">Gross margin</span><span class="v">${rev?Math.round((rev-cogs)/rev*100)+"%":"—"}</span><span class="muted" style="font-size:12px">${rev?`On ${costed.length} costed orders, after delivery`:"Receive a purchase order to record costs"}</span></div>
+     <div class="kpi ${toCheck+toSend?"alert":""}"><span class="l">Needs action</span><span class="v num">${toCheck+toSend+O.filter(o=>o.request?.status==="open").length}</span><span class="muted" style="font-size:12px">${toCheck} to verify · ${toSend} to dispatch · ${O.filter(o=>o.request?.status==="open").length} disputes</span></div>
+   </div>
+   <div class="adm-grid2">
+     <div class="panel"><h2>Sales, last 14 days</h2>
+       <div class="bars">${byDay.map(v=>`<div title="${mvr(v)}"><i class="${v?"":"zero"}" style="height:${Math.max(2,v/mx*100)}%"></i></div>`).join("")}</div>
+       <div class="bars-x">${days.map((d,i)=>`<span>${i%3===0||i===13?fmtShort(d):""}</span>`).join("")}</div></div>
+     <div class="panel"><h2>Best sellers</h2>${top.length?`<table class="tbl"><tbody>${top.map(([pid,n])=>`<tr><td>${esc(prod(pid)?.name||pid)}</td><td class="r">${n} sold</td></tr>`).join("")}</tbody></table>`:`<p class="muted">Best sellers appear after your first orders.</p>`}</div>
+   </div>
+   <div class="panel"><h2>Low stock</h2>${low.length?`<table class="tbl"><thead><tr><th>Product</th><th>Colour</th><th>Size</th><th class="r">Left</th></tr></thead><tbody>${low.map(x=>`<tr><td>${esc(x.p.name)}</td><td>${esc(x.c.n)}</td><td>${x.s}</td><td class="r">${x.v?`<span class="pill warn">${x.v}</span>`:'<span class="pill bad">Sold out</span>'}</td></tr>`).join("")}</tbody></table>`:`<p class="muted">Nothing is running low.</p>`}</div>
+  </div>`;
+}
+const STAT_LABEL={review:"Payment check",confirmed:"To dispatch",shipped:"Out for delivery",delivered:"Delivered",cancelled:"Cancelled",refunded:"Refunded"};
+const STAT_TONE={review:"warn",confirmed:"info",shipped:"info",delivered:"ok",cancelled:"bad",refunded:"mute"};
+S.ordFilter="open";
+function aOrders(O){
+  const f=S.ordFilter, open=["review","confirmed","shipped"], match=(o,k)=>k==="all"||(k==="open"?open.includes(o.status):o.status===k);
+  const list=O.filter(o=>match(o,f)), drv=S.settings.drivers||[];
+  return `<div style="display:flex;flex-direction:column;gap:12px">
+   <div class="filters">${[["open","Open"],["review","Payment check"],["confirmed","To dispatch"],["shipped","Out for delivery"],["delivered","Delivered"],["cancelled","Cancelled"],["all","All"]].map(([k,l])=>`<button class="fchip" aria-pressed="${f===k}" onclick="S.ordFilter='${k}';render()">${l} (${O.filter(o=>match(o,k)).length})</button>`).join("")}</div>
+   ${list.length?list.map(o=>`<div class="order">
+     <div class="order-top"><span><b class="num">${esc(o.id)}</b> <span class="muted">· ${fmtDate(o.at)} ${new Date(o.at).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</span></span><span class="row-actions"><span class="pill ${STAT_TONE[o.status]}">${STAT_LABEL[o.status]}</span>${o.paid?'<span class="pill ok">Paid</span>':o.payStatus==="rejected"?'<span class="pill bad">Receipt rejected</span>':'<span class="pill warn">Unverified</span>'}</span></div>
+     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:14px">
+       <div><b>${esc(o.name)}</b><br><span class="num">${esc(o.phone)}</span>${o.email?`<br><span class="muted" style="overflow-wrap:anywhere">${esc(o.email)}</span>`:""}<br><span class="muted">${esc(o.address)}, ${esc(o.island)}</span><br><span class="pill info" style="margin-top:4px">${esc(fmtSlot(o))}</span>${o.note?`<br><span class="muted">Note: ${esc(o.note)}</span>`:""}</div>
+       <div>${o.items.map(i=>`${i.qty}× ${esc(i.name)} <span class="muted">(${esc(i.colour)}, ${esc(i.size)})</span>`).join("<br>")}</div>
+       <div class="num">Subtotal ${mvr(o.subtotal)}${o.discount?`<br><span class="muted">${esc(o.discountLabel)} −${mvr(o.discount)}</span>`:""}${o.pointsOff?`<br><span class="muted">Points −${mvr(o.pointsOff)}</span>`:""}<br><b>Expect ${mvr(o.total)}</b><br><span class="muted">Ref ${esc(o.id)}${o.code?` · code ${esc(o.code)}`:""}${o.ref?` · invited by ${esc(o.ref)}`:""}</span></div>
+       ${o.status==="review"||o.receipt?`<div>${o.receipt?`<a href="${esc(o.receipt.url)}" target="_blank" rel="noopener" style="display:block;max-width:150px">${/pdf/i.test(o.receipt.type||o.receipt.name)?`<span class="btn sm ghost">Open PDF receipt</span>`:`<img src="${esc(o.receipt.url)}" alt="Transfer receipt for ${esc(o.id)}" style="border-radius:10px;border:1px solid var(--line);max-height:180px;object-fit:cover">`}</a><span class="muted" style="font-size:12px">Tap to open full size</span>`:`<span class="pill warn">No receipt yet</span><br><span class="muted" style="font-size:12px">Ask for it on Instagram</span>`}</div>`:""}
+     </div>
+     ${o.status==="review"&&o.payStatus!=="rejected"?`<div class="notice warn" style="font-size:13px">Check your banking app for ${mvr(o.total)} with reference ${esc(o.id)} before you verify.</div>`:""}
+     ${o.status==="confirmed"?dispatchForm(o,drv):""}
+     ${o.status==="shipped"&&o.driver?`<div class="notice"><b>${esc(o.driver.name)}</b> · <span class="num">${esc(o.driver.phone)}</span>${o.driver.vehicle?" · "+esc(o.driver.vehicle):""} · fare ${mvr(o.driver.fare||0)}${o.driver.ref?" · "+esc(o.driver.ref):""}</div>`:""}
+     <div class="row-actions">
+       ${o.status==="review"&&o.payStatus!=="rejected"?`<button class="btn sm" onclick="verifyPay('${o.uid}','${o.id}')">Payment received · confirm order</button>${S.pending["rj"+o.id]?`<span class="inline-confirm"><label class="sr" for="rj-${o.id}">Reason</label><input class="inp" id="rj-${o.id}" style="height:36px;min-width:200px" placeholder="e.g. Amount doesn't match"><button class="btn sm" style="background:var(--bad)" onclick="rejectPay('${o.uid}','${o.id}')">Reject receipt</button><button class="btn sm ghost" onclick="delete S.pending['rj${o.id}'];render()">Back</button></span>`:`<button class="btn sm ghost" onclick="S.pending['rj${o.id}']=1;render()">Reject receipt</button>`}`:""}
+       ${o.status==="shipped"?`<button class="btn sm" onclick="setStatus('${o.uid}','${o.id}','delivered')">Mark delivered</button><button class="btn sm ghost" onclick="copyText(driverText(allOrders().find(x=>x.id==='${o.id}'))).then(ok=>toast(ok?'Delivery details copied for the driver':'Copy failed'))">Copy for driver</button><button class="btn sm ghost" onclick="setStatus('${o.uid}','${o.id}','confirmed')">Change driver</button>`:""}
+       <button class="btn sm ghost" onclick="copyText(orderText(allOrders().find(x=>x.id==='${o.id}'))).then(ok=>toast(ok?'Order copied':'Copy failed'))">Copy order</button>
+       ${["review","confirmed"].includes(o.status)?(S.pending["cx"+o.id]?`<span class="inline-confirm">Cancel this order?${o.paid?" Refund the customer yourself.":""}<button class="btn sm" style="background:var(--bad)" onclick="setStatus('${o.uid}','${o.id}','cancelled')">Yes, cancel</button><button class="btn sm ghost" onclick="delete S.pending['cx${o.id}'];render()">Keep</button></span>`:`<button class="btn sm ghost" onclick="S.pending['cx${o.id}']=1;render()">Cancel order</button>`):""}
+     </div></div>`).join(""):`<div class="empty"><b>No orders here</b><span>New orders appear here instantly, waiting for you to check the payment.</span></div>`}
+  </div>`;
+}
+function dispatchForm(o,drv){const d=o.driver||{};return `<div class="panel" style="background:var(--sunk);gap:10px">
+  <h3>Send for delivery with Avas</h3><p class="muted" style="font-size:13px">Book the trip in the Avas app, then record the driver here. The customer sees the driver's name and number.</p>
+  <div class="row2" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px">
+    <div class="field"><label for="dsel-${o.id}">Driver</label><select class="sel" id="dsel-${o.id}" onchange="fillDrv('${o.id}',this.value)"><option value="">New driver</option>${drv.map((x,i)=>`<option value="${i}" ${d.name===x.name?"selected":""}>${esc(x.name)}</option>`).join("")}</select></div>
+    <div class="field"><label for="dn-${o.id}">Name</label><input class="inp" id="dn-${o.id}" value="${esc(d.name||"")}"></div>
+    <div class="field"><label for="dp-${o.id}">Phone</label><input class="inp num" id="dp-${o.id}" value="${esc(d.phone||"")}" inputmode="tel"></div>
+    <div class="field"><label for="dv-${o.id}">Vehicle / plate</label><input class="inp" id="dv-${o.id}" value="${esc(d.vehicle||"")}" placeholder="e.g. Bike P-1234"></div>
+    <div class="field"><label for="df-${o.id}">Fare (MVR)</label><input class="inp num" id="df-${o.id}" type="number" min="0" value="${d.fare??""}"></div>
+    <div class="field"><label for="dr-${o.id}">Avas trip note</label><input class="inp" id="dr-${o.id}" value="${esc(d.ref||"")}" placeholder="optional"></div>
+  </div>
+  <label class="check"><input type="checkbox" id="dsave-${o.id}" checked> <span>Save to my driver roster</span></label>
+  <div><button class="btn sm" onclick="assignDriver('${o.uid}','${o.id}')">Send for delivery</button></div></div>`}
+function fillDrv(id,i){const d=(S.settings.drivers||[])[+i];if(i===""||!d)return;$("#dn-"+id).value=d.name;$("#dp-"+id).value=d.phone;$("#dv-"+id).value=d.vehicle||"";if(d.fare)$("#df-"+id).value=d.fare}
+function fmtSlot(o){if(!o.deliverDay)return "Any time";return new Date(o.deliverDay+"T00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"})+", "+(o.deliverSlot||"").replace(/ \(.*\)/,"")+(o.deliverSlot?" "+(o.deliverSlot.match(/\((.*)\)/)||["",""])[1]:"")}
+function driverText(o){return `Gym Babes delivery ${o.id}\nDeliver to: ${o.name}\nPhone: ${o.phone}\nAddress: ${o.address}, ${o.island}\nPreferred time: ${fmtSlot(o)}`+(o.note?`\nNote: ${o.note}`:"")+`\nItems: ${o.items.reduce((a,i)=>a+i.qty,0)} piece(s), already paid`}
+async function verifyPay(uid,id){try{const o0=S.custs[uid].orders.find(x=>x.id===id);if(!o0.stockOut)await moveStock(o0.items,-1);
+  await patchOrder(uid,id,o=>{o.paid=true;o.payStatus="verified";o.status="confirmed";o.stockOut=true;o.verifiedAt=Date.now();o.log=[...(o.log||[]),{st:"confirmed",at:Date.now()}]});toast("Payment verified. "+id+" is ready to dispatch")}catch(e){toast("Couldn't verify. Try again")}}
+async function rejectPay(uid,id){const r=$("#rj-"+id).value.trim()||"The receipt didn't match a payment in our account.";
+  try{await patchOrder(uid,id,o=>{o.payStatus="rejected";o.rejectReason=r});delete S.pending["rj"+id];toast("Receipt rejected. The customer can upload a new one")}catch(e){toast("Couldn't update")}}
+async function assignDriver(uid,id){const v=k=>$(`#${k}-${id}`).value.trim();const name=v("dn"),phone=v("dp");
+  if(!name||!phone){toast("Add the driver's name and phone");return}
+  const driver={name,phone,vehicle:v("dv"),fare:Number(v("df"))||0,ref:v("dr"),at:Date.now()};
+  try{await patchOrder(uid,id,o=>{o.driver=driver;o.status="shipped";o.log=[...(o.log||[]),{st:"shipped",at:Date.now(),driver:name}]});
+    if($("#dsave-"+id).checked&&!(S.settings.drivers||[]).some(d=>d.phone===phone))await saveSettings({drivers:[...(S.settings.drivers||[]),{name,phone,vehicle:driver.vehicle,fare:driver.fare}]});
+    toast(id+" is out for delivery with "+name)}catch(e){toast("Couldn't assign the driver")}}
+async function patchOrder(uid,id,fn){
+  const c=structuredClone(S.custs[uid]);const o=c.orders.find(x=>x.id===id);fn(o,c);
+  await S.db.doc("customers/"+uid).update({orders:c.orders,...(c._bonus!==undefined?{bonusPoints:c._bonus}:{})});
+}
+async function setStatus(uid,id,st){
+  try{
+    const o0=S.custs[uid].orders.find(x=>x.id===id);
+    if(st==="confirmed"&&!o0.stockOut)await moveStock(o0.items,-1);
+    if(st==="cancelled"&&o0.stockOut)await moveStock(o0.items,+1);
+    await patchOrder(uid,id,o=>{o.status=st;if(st==="confirmed")o.stockOut=true;if(st==="cancelled")o.stockOut=false;if(st==="delivered")o.deliveredAt=Date.now();o.log=[...(o.log||[]),{st,at:Date.now()}]});
+    delete S.pending["cx"+id];toast(STAT_LABEL[st]+": "+id);
+  }catch(e){toast("Couldn't update the order. Try again")}
+}
+
+async function moveStock(items,dir){
+  const byP={};items.forEach(i=>{const p=prod(i.pid);if(!p||stockOf(p,i.ck,i.size)===null)return;(byP[i.pid]=byP[i.pid]||[]).push(i)});
+  for(const [pid,its] of Object.entries(byP)){const ov=structuredClone(S.ov[pid]||{});ov.stock=ov.stock||{};
+    its.forEach(i=>{ov.stock[i.ck]=ov.stock[i.ck]||{};ov.stock[i.ck][i.size]=Math.max(0,Number(ov.stock[i.ck][i.size]||0)+dir*i.qty)});
+    await S.db.doc("products/"+pid).set(ov);S.ov[pid]=ov;}
+}
+function aInventory(){
+  const ps=products(true), demand={};
+  Object.values(S.custs).forEach(c=>(c.notify||[]).forEach(n=>{const k=n.pid+"|"+n.ck+"|"+n.size;demand[k]=(demand[k]||0)+1}));
+  return `<div style="display:flex;flex-direction:column;gap:12px">
+   <p class="muted">Edit prices, stock per size and visibility. Leave a size blank to stop tracking it. Stock is reserved when you verify an order's payment, returned if you cancel it, and added when you receive a purchase order.</p>
+   ${ps.map(p=>`<div class="inv-card" id="inv-${p.id}">
+     <span class="ph"><img src="${esc(p.colours[0].img)}" alt=""></span>
+     <div class="body">
+       <div class="order-top"><b style="font-size:16px">${esc(p.name)}</b><label class="toggle"><input type="checkbox" id="act-${p.id}" ${p.active!==false?"checked":""}> Visible in shop</label></div>
+       <div class="inv-top">
+         <div class="field"><label for="pr-${p.id}">Price (MVR)</label><input class="inp num" id="pr-${p.id}" type="number" min="0" value="${p.price}"></div>
+         <div class="field"><label for="ca-${p.id}">Was price</label><input class="inp num" id="ca-${p.id}" type="number" min="0" value="${p.compareAt||""}" placeholder="—"></div>
+         <div class="field"><label for="bd-${p.id}">Badge</label><input class="inp" id="bd-${p.id}" value="${esc(p.badge||"")}" placeholder="e.g. New"></div>
+         ${!S.ov[p.id]?.price&&!p.custom?`<span class="pill warn">Starter price</span>`:""}
+         ${S.costs[p.id]?.cost?`<span class="pill ${(p.price-S.costs[p.id].cost)/p.price<.55?"warn":"ok"}">Landed ${mvr(S.costs[p.id].cost)} · ${Math.round((p.price-S.costs[p.id].cost)/p.price*100)}% margin</span>`:""}
+       </div>
+       <div class="tbl-wrap" style="border:0;background:none"><div class="inv-grid"><span></span>${SIZES.map(s=>`<b style="text-align:center">${s}</b>`).join("")}
+       ${p.colours.map(c=>`<span class="dots" style="flex-wrap:nowrap;gap:6px">${dot(c)}<span>${esc(c.n)}</span></span>${SIZES.map(s=>{const v=stockOf(p,c.k,s), d=demand[p.id+"|"+c.k+"|"+s];return `<span style="position:relative"><input aria-label="${esc(c.n)} ${s} stock" id="st-${p.id}-${c.k}-${s}" type="number" min="0" value="${v??""}" placeholder="–" class="${v===0?"zero":v!==null&&v<=S.settings.lowStock?"low":""}">${d?`<span class="pill info" style="position:absolute;top:-9px;right:-4px;font-size:10px;padding:0 5px" title="Customers waiting">${d}</span>`:""}</span>`}).join("")}`).join("")}
+       </div></div>
+       <div class="row-actions"><button class="btn sm" onclick="saveInv('${p.id}')">Save changes</button>${p.custom?(S.pending["del"+p.id]?`<span class="inline-confirm">Delete this product for good?<button class="btn sm" style="background:var(--bad)" onclick="delProduct('${p.id}')">Delete</button><button class="btn sm ghost" onclick="delete S.pending['del${p.id}'];render()">Keep</button></span>`:`<button class="btn sm ghost" onclick="S.pending['del${p.id}']=1;render()">Delete</button>`):""}</div>
+     </div></div>`).join("")}
+   <div class="panel" id="newProd"><h2>Add a product</h2>
+     ${S.assets?"":`<p class="notice warn">Photo uploads are available to the shop owner and editors.</p>`}
+     <div class="form">
+       <div class="row2"><div class="field"><label for="np-n">Product name</label><input class="inp" id="np-n" placeholder="e.g. Flare Yoga Pants"></div>
+       <div class="field"><label for="np-c">Category</label><select class="sel" id="np-c"><option value="leggings">Leggings</option><option value="tops">Tops &amp; jackets</option></select></div></div>
+       <div class="row2"><div class="field"><label for="np-p">Price (MVR)</label><input class="inp" id="np-p" type="number" min="0"></div>
+       <div class="field"><label for="np-col">Colour name</label><input class="inp" id="np-col" placeholder="e.g. Black"></div></div>
+       <div class="row2"><div class="field"><label for="np-hex">Swatch colour</label><input class="inp" id="np-hex" type="color" value="#1b1b1e" style="padding:4px"></div>
+       <div class="field"><label for="np-img">Photo (portrait works best)</label><input class="inp" id="np-img" type="file" accept="image/*" style="padding-top:9px"></div></div>
+       <div class="field"><label for="np-d">Description</label><textarea class="inp" id="np-d" rows="2"></textarea></div>
+       <label class="check"><input type="checkbox" id="np-cov"> <span>Include in the Full-sleeve edit</span></label>
+       <div><button class="btn sm" onclick="addProduct()">Add product</button></div>
+     </div></div>
+  </div>`;
+}
+async function saveInv(pid){
+  const p=prod(pid), ov=structuredClone(S.ov[pid]||{});
+  ov.price=Number($("#pr-"+pid).value)||0; const ca=Number($("#ca-"+pid).value);ov.compareAt=ca>0?ca:null; ov.badge=$("#bd-"+pid).value.trim(); ov.active=$("#act-"+pid).checked;
+  ov.stock={};let any=false;
+  p.colours.forEach(c=>{ov.stock[c.k]={};SIZES.forEach(s=>{const v=$(`#st-${pid}-${c.k}-${s}`).value;if(v!==""){ov.stock[c.k][s]=Math.max(0,Number(v));any=true}})});
+  if(!any)ov.stock=null;
+  try{await S.db.doc("products/"+pid).set(ov);S.ov[pid]=ov;
+    // tell waiting customers the size is back by clearing satisfied requests is left to the team (shown as counts)
+    toast("Saved "+p.name);render()}catch(e){toast("Couldn't save. Check your connection")}
+}
+async function addProduct(){
+  const n=$("#np-n").value.trim(), price=Number($("#np-p").value), file=$("#np-img").files[0], col=$("#np-col").value.trim()||"Black";
+  if(!n||!price||!file){toast("Add a name, price and photo");return}
+  if(!S.assets){toast("Photo upload isn't available for this account");return}
+  try{toast("Uploading photo…");const a=await S.assets.upload(file);
+    const id="p"+Date.now().toString(36);
+    await S.db.doc("products/"+id).set({custom:true,name:n,cat:$("#np-c").value,price,desc:$("#np-d").value.trim(),feats:[],cover:$("#np-cov").checked,active:true,created:Date.now(),
+      colours:[{k:col.toLowerCase().replace(/[^a-z0-9]/g,"")||"c1",n:col,hex:$("#np-hex").value,img:a.url,asset:a.id}],stock:null});
+    toast("Product added");}catch(e){toast("Couldn't add the product. Try a smaller photo")}
+}
+async function delProduct(pid){try{await S.db.doc("products/"+pid).delete();delete S.ov[pid];delete S.pending["del"+pid];toast("Product deleted");render()}catch(e){toast("Couldn't delete")}}
+
+function aRequests(O){
+  const R=O.filter(o=>o.request).sort((a,b)=>(a.request.status==="open"?0:1)-(b.request.status==="open"?0:1)||b.request.at-a.request.at);
+  return `<div style="display:flex;flex-direction:column;gap:12px">
+   <p class="muted">Customers can report wrong, faulty or missing items within 48 hours of delivery. Approve a refund, resolve with a replacement, or decline with a reason they'll see in their account.</p>
+   ${R.length?R.map(o=>{const q=o.request;return `<div class="req ${q.status==="open"?"open":q.status==="rejected"?"no":"done"}">
+     <div class="order-top"><span><span class="pill ${q.type==="refund"?"bad":"info"}">${q.type==="refund"?"Refund request":"Dispute"}</span> <b class="num">${esc(o.id)}</b> <span class="muted">· ${esc(o.name)} · ${esc(o.phone)} · ${fmtDate(q.at)}</span></span><span class="pill ${q.status==="open"?"warn":q.status==="rejected"?"mute":"ok"}">${{open:"Open",approved:"Refund approved",resolved:"Resolved",rejected:"Declined"}[q.status]}</span></div>
+     <p><b>${esc(q.reason)}</b>${q.details?` · ${esc(q.details)}`:""}</p>
+     <p class="muted" style="font-size:13px">${o.items.map(i=>`${i.qty}× ${esc(i.name)} (${esc(i.colour)}, ${esc(i.size)})`).join(", ")} · Paid ${mvr(o.total)}</p>
+     ${q.status==="open"?`<div class="form"><div class="row2"><div class="field"><label for="ra-${o.id}">Refund amount (MVR)</label><input class="inp" id="ra-${o.id}" type="number" min="0" max="${o.total}" value="${o.total}"></div>
+       <div class="field"><label for="rn-${o.id}">Note to customer</label><input class="inp" id="rn-${o.id}" placeholder="e.g. Replacement sent on Thursday"></div></div>
+       <div class="row-actions"><button class="btn sm" onclick="resolveReq('${o.uid}','${o.id}','approved')">Approve refund</button><button class="btn sm dark" onclick="resolveReq('${o.uid}','${o.id}','resolved')">Resolve (replacement or fix)</button><button class="btn sm ghost" onclick="resolveReq('${o.uid}','${o.id}','rejected')">Decline</button></div></div>`
+     :`<p style="font-size:14px">${q.refundAmount?`Refunded ${mvr(q.refundAmount)}. `:""}${esc(q.resolution||"")}</p>`}
+   </div>`}).join(""):`<div class="empty"><b>No refund requests or disputes</b><span>When a customer reports a problem it lands here.</span></div>`}
+  </div>`;
+}
+async function resolveReq(uid,id,st){
+  const amt=Number($("#ra-"+id)?.value)||0, note=$("#rn-"+id)?.value.trim()||"";
+  try{await patchOrder(uid,id,o=>{o.request={...o.request,status:st,resolution:note||(st==="approved"?"Your refund has been approved.":st==="resolved"?"We've sorted this for you.":"We couldn't approve this request."),closedAt:Date.now()};
+    if(st==="approved"){o.request.refundAmount=Math.min(amt,o.total);o.refunded=Math.min(amt,o.total);if(o.refunded>=o.total)o.status="refunded"}});
+    toast("Request updated")}catch(e){toast("Couldn't update the request")}
+}
+function aReviews(){
+  const R=allReviews();
+  return `<div style="display:flex;flex-direction:column;gap:12px"><p class="muted">Only customers with a delivered order can review. Hide anything abusive or off-topic; hidden reviews stop counting towards ratings.</p>
+  ${R.length?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Product</th><th>Rating</th><th>Review</th><th>By</th><th></th></tr></thead><tbody>${R.map(r=>`<tr><td>${esc(prod(r.pid)?.name||r.pid)}</td><td>${stars(r.rating)}</td><td style="min-width:220px"><b>${esc(r.title||"")}</b> ${esc(r.text)}<br><span class="muted" style="font-size:12px">${r.fit?{small:"Runs small",true:"True to size",large:"Runs large"}[r.fit]:""} · ${fmtDate(r.at)}</span></td><td>${esc(r.name)}</td><td><button class="btn sm ghost" onclick="hideReview('${r.uid}','${r.pid}',${!r.hidden})">${r.hidden?"Show":"Hide"}</button></td></tr>`).join("")}</tbody></table></div>`:`<div class="empty"><b>No reviews yet</b><span>Customers can review items once an order is marked delivered.</span></div>`}</div>`;
+}
+async function hideReview(uid,pid,h){try{await S.db.doc("reviews/"+uid).update({items:{[pid]:{hidden:h}}});toast(h?"Review hidden":"Review visible")}catch(e){toast("Couldn't update the review")}}
+function aCustomers(){
+  const C=Object.entries(S.custs).map(([uid,c])=>{const os=(c.orders||[]).filter(o=>o.status!=="cancelled");const code=refCode(uid);
+    const refs=Object.values(S.custs).filter(x=>x.ref===code).length;
+    return {uid,c,n:os.length,spend:os.reduce((a,o)=>a+o.total-(o.refunded||0),0),last:Math.max(0,...os.map(o=>o.at)),pts:pointsBalance(c),code,refs}}).sort((a,b)=>b.spend-a.spend);
+  const marketing=C.filter(x=>x.c.marketing);
+  return `<div style="display:flex;flex-direction:column;gap:12px">
+   <div class="kpis"><div class="kpi"><span class="l">Customers</span><span class="v num">${C.length}</span></div><div class="kpi"><span class="l">Repeat customers</span><span class="v num">${C.filter(x=>x.n>1).length}</span></div><div class="kpi"><span class="l">Opted in to offers</span><span class="v num">${marketing.length}</span></div><div class="kpi"><span class="l">Referrals</span><span class="v num">${C.reduce((a,x)=>a+x.refs,0)}</span></div></div>
+   ${marketing.length?`<div class="row-actions"><button class="btn sm ghost" onclick="copyText('${marketing.map(x=>esc(x.c.phone)).join(", ")}').then(ok=>toast(ok?'Phone numbers copied for your broadcast list':'Copy failed'))">Copy opted-in phone numbers</button></div>`:""}
+   ${C.length?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Customer</th><th>Island</th><th class="r">Orders</th><th class="r">Spend</th><th>Last order</th><th class="r">Points</th><th>Invite code</th><th></th></tr></thead><tbody>
+    ${C.map(x=>`<tr><td><b>${esc(x.c.name||"—")}</b><br><span class="muted">${esc(x.c.phone||"")}</span></td><td>${esc(x.c.island||"")}</td><td class="r">${x.n}</td><td class="r">${mvr(x.spend)}</td><td>${x.last?fmtDate(x.last):"—"}</td><td class="r">${x.pts}</td><td>${x.code}${x.refs?` <span class="pill ok">${x.refs} referred</span>`:""}</td>
+      <td><span class="row-actions" style="flex-wrap:nowrap"><input class="inp num" style="width:80px;height:34px" type="number" id="bp-${x.uid}" placeholder="+pts" aria-label="Bonus points"><button class="btn sm ghost" onclick="addBonus('${x.uid}')">Add</button></span></td></tr>`).join("")}</tbody></table></div>`:`<div class="empty"><b>No customers yet</b></div>`}
+  </div>`;
+}
+async function addBonus(uid){const n=Number($("#bp-"+uid).value);if(!n){toast("Enter points to add");return}
+  try{await S.db.doc("customers/"+uid).update({bonusPoints:(S.custs[uid].bonusPoints||0)+n});toast(`Added ${n} points`)}catch(e){toast("Couldn't add points")}}
+function aMarketing(){
+  const st=S.settings,b=st.banner;
+  return `<div class="adm-grid2">
+   <div class="panel"><h2>Announcement banner</h2>
+     <div class="banner-prev"><div class="announce"><div class="wrap"><span id="bpText">${esc(b.text)}</span><a>${esc(b.cta||"Shop now")}</a></div></div></div>
+     <div class="form">
+       <label class="toggle"><input type="checkbox" id="bOn" ${b.on?"checked":""}> Show banner</label>
+       <div class="field"><label for="bText">Message</label><textarea class="inp" id="bText" rows="2" maxlength="140" oninput="$('#bpText').textContent=this.value">${esc(b.text)}</textarea></div>
+       <div class="row2"><div class="field"><label for="bCta">Button text</label><input class="inp" id="bCta" value="${esc(b.cta||"")}"></div>
+       <div class="field"><label for="bLink">Links to</label><select class="sel" id="bLink">${[["shop","Shop all"],["leggings","Leggings"],["tops","Tops & jackets"],["coverage","Full-sleeve edit"],["help","Help & policies"],["",'No link']].concat(products(true).map(p=>["product-"+p.id,p.name])).map(([v,l])=>`<option value="${v}" ${b.link===v?"selected":""}>${esc(l)}</option>`).join("")}</select></div></div>
+       <div><button class="btn sm" onclick="saveSettings({banner:{on:$('#bOn').checked,text:$('#bText').value.trim(),cta:$('#bCta').value.trim(),link:$('#bLink').value}})">Publish banner</button></div>
+     </div></div>
+   <div class="panel"><h2>Discount codes</h2>
+     <div class="code-list">${(st.codes||[]).map((c,i)=>`<div class="code-item"><span><b>${esc(c.code)}</b> <span class="muted">· ${c.type==="pct"?c.value+"% off":mvr(c.value)+" off"}${c.first?" · first order only":""}</span><br><span style="font-size:12.5px">${(()=>{const os=allOrders().filter(o=>o.code===c.code&&o.paid);return os.length?`${os.length} paid order${os.length>1?"s":""} · ${mvr(os.reduce((a,o)=>a+o.total,0))}`:"No paid orders yet"})()}</span></span><span class="row-actions"><label class="toggle"><input type="checkbox" ${c.on?"checked":""} onchange="toggleCode(${i},this.checked)"> Active</label><button class="rm" onclick="removeCode(${i})">Remove</button></span></div>`).join("")||`<p class="muted">No codes yet.</p>`}</div>
+     <div class="form"><div class="row2"><div class="field"><label for="cC">Code</label><input class="inp" id="cC" placeholder="e.g. RAMADAN15" style="text-transform:uppercase"></div>
+       <div class="field"><label for="cV">Discount</label><div class="code-row"><input class="inp num" id="cV" type="number" min="1" placeholder="15"><select class="sel" id="cT"><option value="pct">%</option><option value="amt">MVR</option></select></div></div></div>
+       <label class="check"><input type="checkbox" id="cF"> <span>First order only</span></label>
+       <div><button class="btn sm" onclick="addCode()">Create code</button></div></div></div>
+   <div class="panel"><h2>Loyalty &amp; offers</h2><div class="form">
+     <div class="row2"><div class="field"><label for="lP">MVR spent per point</label><input class="inp num" id="lP" type="number" min="1" value="${st.pointsPer}"></div>
+     <div class="field"><label for="lD">Set deal discount (%)</label><input class="inp num" id="lD" type="number" min="0" max="50" value="${st.setDeal}"></div></div>
+     <div class="row2"><div class="field"><label for="lS">Points per reward</label><input class="inp num" id="lS" type="number" min="1" value="${st.redeemStep}"></div>
+     <div class="field"><label for="lV">Reward value (MVR)</label><input class="inp num" id="lV" type="number" min="1" value="${st.redeemValue}"></div></div>
+     <div><button class="btn sm" onclick="saveSettings({pointsPer:+$('#lP').value||10,setDeal:+$('#lD').value||0,redeemStep:+$('#lS').value||100,redeemValue:+$('#lV').value||50})">Save</button></div></div></div>
+   <div class="panel"><h2>Retention playbook</h2><ul style="margin:0;padding-left:18px;display:grid;gap:8px;font-size:14px">
+     <li><b>Restock alerts:</b> blue counts in Inventory show how many customers are waiting for a size. Message them the day it lands.</li>
+     <li><b>Review ask:</b> customers see a “Review your purchases” prompt once an order is marked delivered. Mark deliveries promptly.</li>
+     <li><b>Win-back:</b> in Customers, sort by last order and send a code to anyone quiet for 60 days.</li>
+     <li><b>Referrals:</b> each customer has an invite code. Add bonus points in Customers when a referral's first order is delivered.</li>
+     <li><b>Babe Squad:</b> give each ambassador her own code (e.g. HAWWA10). Paid orders and sales per code show above, so you can pay her credit monthly.</li>
+     <li><b>Seasonal codes:</b> create a code for Ramadan, Eid or New Year and announce it in the banner.</li></ul></div>
+  </div>`;
+}
+async function saveSettings(patch){const next={...S.settings,...patch};try{await S.db.doc("shop/settings").set(next);S.settings=next;toast("Saved");render()}catch(e){toast("Couldn't save settings")}}
+function addCode(){const code=$("#cC").value.trim().toUpperCase().replace(/\s/g,""),v=+$("#cV").value;if(!code||!v){toast("Enter a code and amount");return}
+  if((S.settings.codes||[]).some(c=>c.code===code)){toast("That code already exists");return}
+  saveSettings({codes:[...(S.settings.codes||[]),{code,type:$("#cT").value,value:v,first:$("#cF").checked,on:true}]})}
+function toggleCode(i,on){const c=structuredClone(S.settings.codes);c[i].on=on;saveSettings({codes:c})}
+function removeCode(i){const c=structuredClone(S.settings.codes);c.splice(i,1);saveSettings({codes:c})}
+function aSettings(){const st=S.settings;return `<div class="adm-grid2">${vSecurity()}
+  <div class="panel"><h2>Contact</h2><div class="form">
+   <div class="field"><label for="sIg">Instagram handle</label><input class="inp" id="sIg" value="${esc(st.instagram)}"></div>
+   <div class="field"><label for="sWa">WhatsApp / Viber number (optional)</label><input class="inp" id="sWa" value="${esc(st.whatsapp)}" placeholder="e.g. 7771234"></div>
+   <div class="field"><label for="sLow">Low-stock alert at</label><input class="inp num" id="sLow" type="number" min="0" value="${st.lowStock}"></div>
+   <div><button class="btn sm" onclick="saveSettings({instagram:$('#sIg').value.trim().replace(/^@/,''),whatsapp:$('#sWa').value.trim(),lowStock:+$('#sLow').value||0})">Save</button></div></div></div>
+  <div class="panel"><h2>Bank transfer details</h2><p class="muted" style="font-size:14px">Shown at checkout. Every order is paid by transfer and confirmed when you verify the receipt.</p><div class="form">
+   <div class="field"><label for="sBk">Bank</label><input class="inp" id="sBk" value="${esc(st.bank.bank)}" placeholder="e.g. Bank of Maldives"></div>
+   <div class="field"><label for="sAc">Account number</label><input class="inp num" id="sAc" value="${esc(st.bank.acct)}"></div>
+   <div class="field"><label for="sHo">Account name</label><input class="inp" id="sHo" value="${esc(st.bank.holder)}"></div>
+   <div><button class="btn sm" onclick="saveSettings({bank:{bank:$('#sBk').value.trim(),acct:$('#sAc').value.trim(),holder:$('#sHo').value.trim()}})">Save</button></div></div></div></div>`}
+
+/* ---------- delivery ---------- */
+function aDelivery(O){
+  const drv=S.settings.drivers||[], done=O.filter(o=>o.driver&&["shipped","delivered"].includes(o.status));
+  const m0=new Date();m0.setDate(1);m0.setHours(0,0,0,0);const month=done.filter(o=>(o.driver.at||o.at)>=m0.getTime());
+  const fares=month.reduce((a,o)=>a+(+o.driver.fare||0),0);
+  const stats=name=>{const os=done.filter(o=>o.driver.name===name);return {n:os.length,fare:os.reduce((a,o)=>a+(+o.driver.fare||0),0),last:Math.max(0,...os.map(o=>o.driver.at||o.at))}};
+  const out=O.filter(o=>o.status==="shipped");
+  return `<div style="display:flex;flex-direction:column;gap:16px">
+   <div class="kpis"><div class="kpi"><span class="l">Out for delivery now</span><span class="v num">${out.length}</span></div><div class="kpi"><span class="l">Deliveries this month</span><span class="v num">${month.length}</span></div><div class="kpi"><span class="l">Avas fares this month</span><span class="v">${mvr(fares)}</span></div><div class="kpi"><span class="l">Average fare</span><span class="v">${month.length?mvr(fares/month.length):"—"}</span></div></div>
+   ${out.length?`<div class="panel"><h2>On the road</h2><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Order</th><th>Customer</th><th>Driver</th><th>Sent</th><th></th></tr></thead><tbody>${out.map(o=>`<tr><td class="num">${esc(o.id)}</td><td>${esc(o.name)}<br><span class="muted">${esc(o.address)}, ${esc(o.island)}</span></td><td>${esc(o.driver.name)}<br><span class="muted num">${esc(o.driver.phone)}</span></td><td>${new Date(o.driver.at).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</td><td><button class="btn sm" onclick="setStatus('${o.uid}','${o.id}','delivered')">Delivered</button></td></tr>`).join("")}</tbody></table></div></div>`:""}
+   <div class="panel"><h2>Driver roster</h2><p class="muted" style="font-size:14px">Avas is a ride app, so book each trip in Avas, then pick the driver here when you dispatch. Drivers you use are saved automatically.</p>
+    ${drv.length?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Driver</th><th>Phone</th><th>Vehicle</th><th class="r">Usual fare</th><th class="r">Deliveries</th><th class="r">Fares paid</th><th>Last trip</th><th></th></tr></thead><tbody>${drv.map((d,i)=>{const t=stats(d.name);return `<tr><td><b>${esc(d.name)}</b></td><td class="num">${esc(d.phone)}</td><td>${esc(d.vehicle||"")}</td><td class="r">${d.fare?mvr(d.fare):"—"}</td><td class="r">${t.n}</td><td class="r">${mvr(t.fare)}</td><td>${t.last?fmtDate(t.last):"—"}</td><td><button class="rm" onclick="removeDriver(${i})">Remove</button></td></tr>`}).join("")}</tbody></table></div>`:`<p class="muted">No drivers saved yet.</p>`}
+    <div class="form"><div class="row2" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+      <div class="field"><label for="nd-n">Name</label><input class="inp" id="nd-n"></div><div class="field"><label for="nd-p">Phone</label><input class="inp num" id="nd-p" inputmode="tel"></div>
+      <div class="field"><label for="nd-v">Vehicle / plate</label><input class="inp" id="nd-v"></div><div class="field"><label for="nd-f">Usual fare (MVR)</label><input class="inp num" id="nd-f" type="number" min="0"></div></div>
+      <div><button class="btn sm" onclick="addDriver()">Add driver</button></div></div></div>
+  </div>`;
+}
+function addDriver(){const n=$("#nd-n").value.trim(),p=$("#nd-p").value.trim();if(!n||!p){toast("Add a name and phone");return}
+  saveSettings({drivers:[...(S.settings.drivers||[]),{name:n,phone:p,vehicle:$("#nd-v").value.trim(),fare:+$("#nd-f").value||0}]})}
+function removeDriver(i){const d=structuredClone(S.settings.drivers||[]);d.splice(i,1);saveSettings({drivers:d})}
+
+/* ---------- procurement ---------- */
+var PO_ST={draft:["Draft","mute"],ordered:["Ordered","info"],shipped:["In transit","warn"],received:["Received","ok"]};
+function poCalc(po){const rate=+po.rate||1,u=l=>SIZES.reduce((b,z)=>b+(+l.qty?.[z]||0),0);
+  const goods=(po.lines||[]).reduce((a,l)=>a+u(l)*(+l.cost||0),0)*rate, units=(po.lines||[]).reduce((a,l)=>a+u(l),0);
+  const extra=(+po.freight||0)+(+po.duty||0)+(+po.other||0), factor=goods?(goods+extra)/goods:1;
+  return {goods,units,extra,total:goods+extra,u,landed:l=>(+l.cost||0)*rate*factor}}
+function newPO(lines){return {id:"PO-"+Date.now().toString(36).slice(-5).toUpperCase(),created:Date.now(),status:"draft",supplier:"",platform:"1688 via agent",currency:"USD",rate:15.42,lines:lines||[],freight:0,duty:0,other:0,eta:"",tracking:"",notes:""}}
+function aProcurement(O){
+  if(S.po)return poEditor();
+  const ps=products(true), sold={};const d30=Date.now()-30*864e5;
+  O.filter(o=>o.paid&&o.at>=d30).forEach(o=>o.items.forEach(i=>{const k=i.pid+"|"+i.ck+"|"+i.size;sold[k]=(sold[k]||0)+i.qty}));
+  const want={};Object.values(S.custs).forEach(c=>(c.notify||[]).forEach(n=>{const k=n.pid+"|"+n.ck+"|"+n.size;want[k]=(want[k]||0)+1}));
+  const sug=[];ps.forEach(p=>p.colours.forEach(c=>SIZES.forEach(z=>{const k=p.id+"|"+c.k+"|"+z,v=stockOf(p,c.k,z);if((v!==null&&v<=S.settings.lowStock)||want[k])sug.push({p,c,z,v,k,sold:sold[k]||0,want:want[k]||0})})));
+  const pos=Object.entries(S.pos).map(([id,p])=>({...p,id})).sort((a,b)=>b.created-a.created);
+  const m0=new Date();m0.setDate(1);m0.setHours(0,0,0,0);
+  const spend=pos.filter(p=>p.status!=="draft"&&(p.orderedAt||p.created)>=m0.getTime()).reduce((a,p)=>a+poCalc(p).total,0);
+  const incoming=pos.filter(p=>["ordered","shipped"].includes(p.status));
+  return `<div style="display:flex;flex-direction:column;gap:16px">
+   <div class="kpis"><div class="kpi"><span class="l">Purchase orders in progress</span><span class="v num">${incoming.length}</span></div><div class="kpi"><span class="l">Units on the way</span><span class="v num">${incoming.reduce((a,p)=>a+poCalc(p).units,0)}</span></div><div class="kpi"><span class="l">Stock spend this month</span><span class="v">${mvr(spend)}</span></div><div class="kpi ${sug.length?"alert":""}"><span class="l">Sizes to restock</span><span class="v num">${sug.length}</span></div></div>
+   <div class="panel"><div class="order-top"><h2>Restock suggestions</h2>${sug.length?`<button class="btn sm" onclick="S.po=newPO(suggestLines());render()">Draft a PO from these</button>`:""}</div>
+     ${sug.length?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Product</th><th>Colour</th><th>Size</th><th class="r">In stock</th><th class="r">Sold, 30 days</th><th class="r">Waiting</th></tr></thead><tbody>${sug.map(x=>`<tr><td>${esc(x.p.name)}</td><td>${esc(x.c.n)}</td><td>${x.z}</td><td class="r">${x.v===null?"—":x.v===0?'<span class="pill bad">0</span>':`<span class="pill warn">${x.v}</span>`}</td><td class="r">${x.sold}</td><td class="r">${x.want||""}</td></tr>`).join("")}</tbody></table></div>`:`<p class="muted">Nothing needs restocking. Sizes appear here when stock falls to ${S.settings.lowStock} or customers ask to be notified.</p>`}</div>
+   <div class="order-top"><h2 style="font-size:20px">Purchase orders</h2><button class="btn sm dark" onclick="S.po=newPO([]);render()">New purchase order</button></div>
+   ${pos.length?pos.map(p=>{const c=poCalc(p);return `<div class="order">
+     <div class="order-top"><span><b class="num">${esc(p.id)}</b> <span class="muted">· ${esc(p.supplier||"No supplier")} · ${esc(p.platform)} · ${fmtDate(p.created)}</span></span><span class="pill ${PO_ST[p.status][1]}">${PO_ST[p.status][0]}</span></div>
+     <p style="font-size:14px">${(p.lines||[]).map(l=>`${c.u(l)}× ${esc(prod(l.pid)?.name||l.pid)} <span class="muted">(${esc(prod(l.pid)?.colours.find(x=>x.k===l.ck)?.n||l.ck)}) · landed ${mvr(c.landed(l))} each</span>`).join("<br>")||'<span class="muted">No lines yet</span>'}</p>
+     <div class="order-top"><span class="muted num" style="font-size:13px">${c.units} units · goods ${mvr(c.goods)} · freight, duty and other ${mvr(c.extra)}${p.eta?` · ETA ${fmtDate(p.eta)}`:""}${p.tracking?` · tracking ${esc(p.tracking)}`:""}</span><b class="num">${mvr(c.total)}</b></div>
+     <div class="row-actions">
+       ${p.status!=="received"?`<button class="btn sm ghost" onclick="S.po=structuredClone(S.pos['${p.id}']);S.po.id='${p.id}';render()">Edit</button>`:""}
+       ${p.status==="draft"?`<button class="btn sm" onclick="poStatus('${p.id}','ordered')">Mark ordered</button>`:""}
+       ${p.status==="ordered"?`<button class="btn sm" onclick="poStatus('${p.id}','shipped')">Mark in transit</button>`:""}
+       ${["ordered","shipped"].includes(p.status)?(S.pending["rc"+p.id]?`<span class="inline-confirm" style="background:var(--ok-bg)">Add ${c.units} units to stock and save landed costs?<button class="btn sm" onclick="receivePO('${p.id}')">Receive</button><button class="btn sm ghost" onclick="delete S.pending['rc${p.id}'];render()">Back</button></span>`:`<button class="btn sm" onclick="S.pending['rc${p.id}']=1;render()">Receive into stock</button>`):""}
+       ${p.status==="draft"?`<button class="rm" onclick="delPO('${p.id}')">Delete draft</button>`:""}
+     </div></div>`}).join(""):`<div class="empty"><b>No purchase orders yet</b><span>Record each China order here to track it and calculate the landed cost per piece.</span></div>`}
+   <div class="panel"><h2>Suppliers</h2>
+     ${Object.keys(S.suppliers).length?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Supplier</th><th>Where</th><th>Link or contact</th><th>Notes</th><th></th></tr></thead><tbody>${Object.entries(S.suppliers).map(([id,x])=>`<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.platform)}</td><td style="overflow-wrap:anywhere">${esc(x.contact)}</td><td>${esc(x.notes)}</td><td><button class="rm" onclick="delSupplier('${id}')">Remove</button></td></tr>`).join("")}</tbody></table></div>`:`<p class="muted">No suppliers saved yet.</p>`}
+     <div class="form"><div class="row2" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+       <div class="field"><label for="ns-n">Supplier or shop name</label><input class="inp" id="ns-n"></div>
+       <div class="field"><label for="ns-p">Where</label><select class="sel" id="ns-p"><option>1688 via agent</option><option>Alibaba</option><option>AliExpress</option><option>Buying agent</option><option>Freight forwarder</option><option>Other</option></select></div>
+       <div class="field"><label for="ns-c">Link or contact</label><input class="inp" id="ns-c"></div>
+       <div class="field"><label for="ns-x">Notes</label><input class="inp" id="ns-x" placeholder="quality, MOQ, lead time"></div></div>
+       <div><button class="btn sm" onclick="addSupplier()">Add supplier</button></div></div></div>
+  </div>`;
+}
+function suggestLines(){const by={};products(true).forEach(p=>p.colours.forEach(c=>SIZES.forEach(z=>{const v=stockOf(p,c.k,z);const k=p.id+"|"+c.k+"|"+z;
+  const waiting=Object.values(S.custs).some(cu=>(cu.notify||[]).some(n=>n.pid===p.id&&n.ck===c.k&&n.size===z));
+  if((v!==null&&v<=S.settings.lowStock)||waiting){const key=p.id+"|"+c.k;by[key]=by[key]||{pid:p.id,ck:c.k,cost:"",qty:{}};by[key].qty[z]=10}})));return Object.values(by)}
+function poEditor(){const po=S.po,c=poCalc(po),ps=products(true);
+  const f=(k,l,t,extra)=>`<div class="field"><label for="po-${k}">${l}</label><input class="inp ${t==="number"?"num":""}" id="po-${k}" type="${t||"text"}" value="${esc(po[k]??"")}" oninput="S.po['${k}']=this.value;poTotals()" ${extra||""}></div>`;
+  return `<div style="display:flex;flex-direction:column;gap:14px">
+   <div class="order-top"><h2 style="font-size:22px">${esc(po.id)} <span class="pill ${PO_ST[po.status][1]}">${PO_ST[po.status][0]}</span></h2><button class="btn sm ghost" onclick="S.po=null;render()">Close without saving</button></div>
+   <div class="panel"><h3>Supplier</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px">
+     <div class="field"><label for="po-supplier">Supplier</label><input class="inp" id="po-supplier" list="supList" value="${esc(po.supplier)}" oninput="S.po.supplier=this.value"><datalist id="supList">${Object.values(S.suppliers).map(x=>`<option value="${esc(x.name)}">`).join("")}</datalist></div>
+     <div class="field"><label for="po-platform">Bought on</label><select class="sel" id="po-platform" onchange="S.po.platform=this.value">${["1688 via agent","Alibaba","AliExpress","Other"].map(x=>`<option ${po.platform===x?"selected":""}>${x}</option>`).join("")}</select></div>
+     <div class="field"><label for="po-currency">Unit cost currency</label><select class="sel" id="po-currency" onchange="S.po.currency=this.value;S.po.rate={USD:15.42,CNY:2.15,MVR:1}[this.value];render()">${["USD","CNY","MVR"].map(x=>`<option ${po.currency===x?"selected":""}>${x}</option>`).join("")}</select></div>
+     ${f("rate","MVR per 1 "+esc(po.currency),"number",'step="0.01"')}
+     ${f("eta","Expected arrival","date")}${f("tracking","Tracking / AWB")}
+   </div><p class="muted" style="font-size:12.5px">Check today's exchange rate before ordering; the default is a starting point.</p></div>
+   <div class="panel"><h3>What you're buying</h3>
+     ${(po.lines||[]).map((l,i)=>{const p=prod(l.pid);return `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:12px">
+       <div class="field"><label for="pl-p-${i}">Product</label><select class="sel" id="pl-p-${i}" onchange="S.po.lines[${i}].pid=this.value;S.po.lines[${i}].ck=prod(this.value).colours[0].k;render()">${ps.map(x=>`<option value="${x.id}" ${x.id===l.pid?"selected":""}>${esc(x.name)}</option>`).join("")}</select></div>
+       <div class="field"><label for="pl-c-${i}">Colour</label><select class="sel" id="pl-c-${i}" onchange="S.po.lines[${i}].ck=this.value">${(p?.colours||[]).map(x=>`<option value="${x.k}" ${x.k===l.ck?"selected":""}>${esc(x.n)}</option>`).join("")}</select></div>
+       <div class="field"><label for="pl-u-${i}">Unit cost (${esc(po.currency)})</label><input class="inp num" id="pl-u-${i}" type="number" min="0" step="0.01" value="${esc(l.cost)}" oninput="S.po.lines[${i}].cost=this.value;poTotals()"></div>
+       <div class="inv-grid" style="grid-template-columns:repeat(5,minmax(44px,1fr));grid-column:1/-1">${SIZES.map(z=>`<b style="text-align:center">${z}</b>`).join("")}${SIZES.map(z=>`<input aria-label="${z} quantity" type="number" min="0" value="${l.qty?.[z]||""}" placeholder="0" oninput="S.po.lines[${i}].qty['${z}']=+this.value||0;poTotals()">`).join("")}</div>
+       <div><button class="rm" onclick="S.po.lines.splice(${i},1);render()">Remove line</button></div></div>`}).join("")}
+     <div><button class="btn sm ghost" onclick="S.po.lines.push({pid:'${ps[0].id}',ck:'${ps[0].colours[0].k}',cost:'',qty:{}});render()">Add a product</button></div></div>
+   <div class="panel"><h3>Landed cost (MVR)</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+     ${f("freight","Freight to Malé","number")}${f("duty","Customs duty and GST","number")}${f("other","Agent fee, clearing, other","number")}</div>
+     <div id="poTot">${poTotHtml(c)}</div>
+     ${f("notes","Notes")}</div>
+   <div class="row-actions"><button class="btn" onclick="savePO()">Save purchase order</button><button class="btn ghost" onclick="S.po=null;render()">Cancel</button></div>
+  </div>`;}
+function poTotHtml(c){return `<div class="sumrow"><span>Goods</span><span class="num">${mvr(c.goods)}</span></div><div class="sumrow"><span>Freight, duty and other</span><span class="num">${mvr(c.extra)}</span></div><div class="sumrow total"><span>Total for ${c.units} units</span><span class="num">${mvr(c.total)}</span></div><p class="muted" style="font-size:13px">${c.units?`Average landed cost ${mvr(c.total/c.units)} per piece. Extra costs are spread by value, so pricier items carry more.`:"Add products and quantities to see landed cost per piece."}</p>`}
+function poTotals(){const e=$("#poTot");if(e)e.innerHTML=poTotHtml(poCalc(S.po))}
+async function savePO(){const po=structuredClone(S.po);const id=po.id;delete po.id;
+  po.lines=(po.lines||[]).filter(l=>SIZES.some(z=>+l.qty?.[z]>0));
+  try{await S.db.doc("purchases/"+id).set(po);S.pos[id]=po;S.po=null;toast("Saved "+id);render()}catch(e){toast("Couldn't save the purchase order")}}
+async function poStatus(id,st){const po={...S.pos[id],status:st};if(st==="ordered")po.orderedAt=Date.now();if(st==="shipped")po.shippedAt=Date.now();
+  try{await S.db.doc("purchases/"+id).set(po);S.pos[id]=po;toast(id+": "+PO_ST[st][0]);render()}catch(e){toast("Couldn't update")}}
+async function delPO(id){try{await S.db.doc("purchases/"+id).delete();delete S.pos[id];render()}catch(e){toast("Couldn't delete")}}
+async function receivePO(id){const po=S.pos[id],c=poCalc(po);
+  try{const byP={};(po.lines||[]).forEach(l=>(byP[l.pid]=byP[l.pid]||[]).push(l));
+    for(const [pid,ls] of Object.entries(byP)){const ov=structuredClone(S.ov[pid]||{});ov.stock=ov.stock||{};
+      let units=0,val=0;ls.forEach(l=>{ov.stock[l.ck]=ov.stock[l.ck]||{};SIZES.forEach(z=>{const q=+l.qty?.[z]||0;if(q){ov.stock[l.ck][z]=(+ov.stock[l.ck][z]||0)+q;units+=q;val+=q*c.landed(l)}})});
+      await S.db.doc("products/"+pid).set(ov);S.ov[pid]=ov;
+      if(units){const prev=S.costs[pid];await S.db.doc("costs/"+pid).set({cost:Math.round(val/units*100)/100,updatedAt:Date.now(),po:id,prev:prev?.cost||null});S.costs[pid]={cost:val/units}}}
+    const np={...po,status:"received",receivedAt:Date.now()};await S.db.doc("purchases/"+id).set(np);S.pos[id]=np;delete S.pending["rc"+id];
+    toast(`Received ${c.units} units into stock`);render()}catch(e){toast("Couldn't receive the stock. Try again")}}
+async function addSupplier(){const n=$("#ns-n").value.trim();if(!n){toast("Add the supplier's name");return}
+  const id="s"+Date.now().toString(36);const x={name:n,platform:$("#ns-p").value,contact:$("#ns-c").value.trim(),notes:$("#ns-x").value.trim()};
+  try{await S.db.doc("suppliers/"+id).set(x);S.suppliers[id]=x;render()}catch(e){toast("Couldn't save supplier")}}
+async function delSupplier(id){try{await S.db.doc("suppliers/"+id).delete();delete S.suppliers[id];render()}catch(e){toast("Couldn't remove")}}
+
+/* ===== API layer: overrides the prototype's local-storage functions ===== */
+async function call(method,path,body,isForm){
+  const r=await fetch(path,{method,headers:isForm?{"x-gb":"1"}:{"content-type":"application/json","x-gb":"1"},body:isForm?body:body?JSON.stringify(body):undefined,credentials:"same-origin"});
+  let d={};try{d=await r.json()}catch(_){}
+  if(r.status===401){S.authed=false;render();throw new Error("Please sign in again.")}
+  if(!r.ok)throw new Error(d.error||"Something went wrong.");return d}
+async function act(fn,okMsg){try{await fn();if(okMsg)toast(okMsg);await reload()}catch(e){toast(e.message)}}
+async function reload(){
+  const d=await call("GET","/api/state");
+  CATALOG=d.products;S.settings={...DEF_SETTINGS,...d.settings};S.costs=d.costs;S.rawOrders=d.orders;S.rawReviews=d.reviews;S.bonus=d.bonus;S.subscribers=d.subscribers;
+  S.pos=Object.fromEntries(d.pos.map(p=>[p.id,p]));S.suppliers=Object.fromEntries(d.suppliers.map(x=>[x.id,x]));
+  S.ov=Object.fromEntries(CATALOG.filter(p=>p.priceSet).map(p=>[p.id,{price:p.price}]));
+  const nf=[];d.notify.forEach(n=>{for(let i=0;i<n.n;i++)nf.push({pid:n.product_id,ck:n.ck,size:n.size})});S.custs={demand:{notify:nf}};
+  S.assets=true;S.loaded=true;render();
+}
+function allOrders(){return (S.rawOrders||[]).map(o=>({id:o.id,uid:o.id,at:o.at,status:o.status,payStatus:o.pay_status,paid:o.paid,items:o.items,subtotal:o.subtotal,discount:o.discount,discountLabel:o.discount_label,code:o.code,total:o.total,name:o.name,phone:o.phone,email:o.email,address:o.address,island:o.island,deliverDay:o.deliver_day?String(o.deliver_day).slice(0,10):null,deliverSlot:o.deliver_slot,note:o.note,marketing:o.marketing,receipt:o.receipt_key?{url:"/api/orders/"+encodeURIComponent(o.id)+"/receipt",type:o.receipt_type||"",name:o.receipt_type||""}:null,rejectReason:o.reject_reason,driver:o.driver,request:o.request,refunded:o.refunded,emails:o.emails,ref:""}))}
+function allReviews(){return (S.rawReviews||[]).map(r=>({pid:r.product_id,uid:r.order_id,rating:r.rating,fit:r.fit,title:r.title,text:r.body,name:r.name,size:r.size,at:new Date(r.created_at).getTime(),hidden:r.hidden}))}
+function products(all){return CATALOG.filter(p=>all||p.active!==false).map(p=>({...p,colours:(p.colours||[]).map(c=>({...c,img:img(c.img)})),stock:p.stock||null}))}
+function verifyPay(uid,id){act(()=>call("POST",`/api/orders/${encodeURIComponent(id)}/verify`),"Payment verified. "+id+" is ready to dispatch, receipt email sent")}
+function rejectPay(uid,id){const r=$("#rj-"+id).value.trim();delete S.pending["rj"+id];act(()=>call("POST",`/api/orders/${encodeURIComponent(id)}/reject`,{reason:r}),"Receipt rejected. The customer has been emailed")}
+function assignDriver(uid,id){const v=k=>$(`#${k}-${id}`).value.trim();act(()=>call("POST",`/api/orders/${encodeURIComponent(id)}/dispatch`,{name:v("dn"),phone:v("dp"),vehicle:v("dv"),fare:v("df"),ref:v("dr"),save:$("#dsave-"+id).checked}),id+" is out for delivery")}
+function setStatus(uid,id,st){delete S.pending["cx"+id];act(()=>call("POST",`/api/orders/${encodeURIComponent(id)}/status`,{status:st}),{delivered:"Marked delivered",cancelled:"Order cancelled, stock returned",confirmed:"Ready to reassign a driver"}[st])}
+function resolveReq(uid,id,st){const amt=$("#ra-"+id)?.value, note=$("#rn-"+id)?.value.trim()||"";act(()=>call("POST",`/api/orders/${encodeURIComponent(id)}/resolve`,{status:st,amount:amt,note}),"Request updated")}
+function hideReview(uid,pid,h){act(()=>call("POST","/api/reviews/hide",{orderId:uid,productId:pid,hidden:h}),h?"Review hidden":"Review visible")}
+function saveInv(pid){const p=prod(pid);const stock={};let any=false;
+  p.colours.forEach(c=>{stock[c.k]={};SIZES.forEach(s=>{const v=$(`#st-${pid}-${c.k}-${s}`).value;if(v!==""){stock[c.k][s]=Math.max(0,Number(v));any=true}})});
+  act(()=>call("POST","/api/products/"+encodeURIComponent(pid),{price:$("#pr-"+pid).value,compareAt:$("#ca-"+pid).value,badge:$("#bd-"+pid).value.trim(),active:$("#act-"+pid).checked,stock:any?stock:null}),"Saved "+p.name)}
+function addProduct(){const f=$("#np-img").files[0];const fd=new FormData();
+  [["name","#np-n"],["cat","#np-c"],["price","#np-p"],["colour","#np-col"],["hex","#np-hex"],["desc","#np-d"]].forEach(([k,s])=>fd.append(k,$(s).value));fd.append("cover",$("#np-cov").checked?"1":"0");if(f)fd.append("image",f,f.name);
+  act(()=>call("POST","/api/products",fd,true),"Product added")}
+function delProduct(pid){delete S.pending["del"+pid];act(()=>call("DELETE","/api/products/"+encodeURIComponent(pid)),"Product deleted")}
+function saveSettings(patch){return act(()=>call("POST","/api/settings",patch),"Saved")}
+function addBonus(uid){const n=Number($("#bp-"+uid).value);if(!n){toast("Enter points to add");return}act(()=>call("POST","/api/bonus",{phone:uid,points:n}),`Added ${n} points`)}
+function savePO(){const po=structuredClone(S.po);const id=po.id;S.po=null;act(()=>call("POST","/api/pos/"+encodeURIComponent(id),po),"Saved "+id)}
+function poStatus(id,st){act(()=>call("POST",`/api/pos/${encodeURIComponent(id)}/status`,{status:st}),id+": "+PO_ST[st][0])}
+function delPO(id){act(()=>call("DELETE","/api/pos/"+encodeURIComponent(id)),"Draft deleted")}
+function receivePO(id){delete S.pending["rc"+id];act(()=>call("POST",`/api/pos/${encodeURIComponent(id)}/receive`),"Stock received and landed costs saved")}
+function addSupplier(){act(()=>call("POST","/api/suppliers",{name:$("#ns-n").value,platform:$("#ns-p").value,contact:$("#ns-c").value,notes:$("#ns-x").value}),"Supplier added")}
+function delSupplier(id){act(()=>call("DELETE","/api/suppliers/"+encodeURIComponent(id)),"Supplier removed")}
+function aCustomers(){
+  const by={};allOrders().filter(o=>o.status!=="cancelled").forEach(o=>{const c=by[o.phone]||(by[o.phone]={phone:o.phone,name:o.name,email:o.email,island:o.island,n:0,spend:0,last:0,del:0,marketing:false});
+    c.n++;c.spend+=o.total-(o.refunded||0);c.last=Math.max(c.last,o.at);if(o.status==="delivered")c.del+=Math.floor((o.total-(o.refunded||0))/(S.settings.pointsPer||10));if(o.marketing)c.marketing=true;if(o.at>=c.last){c.name=o.name;c.email=o.email}});
+  const C=Object.values(by).map(c=>({...c,pts:c.del+(S.bonus?.[c.phone]||0)})).sort((a,b)=>b.spend-a.spend), mk=C.filter(c=>c.marketing);
+  return `<div style="display:flex;flex-direction:column;gap:12px">
+   <div class="kpis"><div class="kpi"><span class="l">Customers</span><span class="v num">${C.length}</span></div><div class="kpi"><span class="l">Repeat customers</span><span class="v num">${C.filter(x=>x.n>1).length}</span></div><div class="kpi"><span class="l">Opted in to offers</span><span class="v num">${mk.length}</span></div><div class="kpi"><span class="l">Newsletter sign-ups</span><span class="v num">${S.subscribers||0}</span></div></div>
+   ${mk.length?`<div class="row-actions"><button class="btn sm ghost" onclick="copyText(${esc(JSON.stringify(mk.map(x=>x.email).join(", ")))}).then(ok=>toast(ok?'Opted-in emails copied':'Copy failed'))">Copy opted-in emails</button></div>`:""}
+   ${C.length?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Customer</th><th>Island</th><th class="r">Orders</th><th class="r">Spend</th><th>Last order</th><th class="r">Points</th><th>Add points</th></tr></thead><tbody>
+    ${C.map(x=>`<tr><td><b>${esc(x.name)}</b><br><span class="muted num">${esc(x.phone)}</span><br><span class="muted" style="overflow-wrap:anywhere">${esc(x.email)}</span></td><td>${esc(x.island)}</td><td class="r">${x.n}</td><td class="r">${mvr(x.spend)}</td><td>${fmtDate(x.last)}</td><td class="r">${x.pts}</td>
+      <td><span class="row-actions" style="flex-wrap:nowrap"><input class="inp num" style="width:80px;height:34px" type="number" id="bp-${esc(x.phone)}" placeholder="+pts" aria-label="Bonus points"><button class="btn sm ghost" onclick="addBonus('${esc(x.phone)}')">Add</button></span></td></tr>`).join("")}</tbody></table></div>`:`<div class="empty"><b>No customers yet</b></div>`}
+  </div>`}
+function vSecurity(){return `<div class="panel"><h2>Change password</h2><form class="form" onsubmit="event.preventDefault();changePw()">
+  <div class="field"><label for="pw0">Current password</label><input class="inp" id="pw0" type="password" autocomplete="current-password" required></div>
+  <div class="field"><label for="pw1">New password (12+ characters)</label><input class="inp" id="pw1" type="password" autocomplete="new-password" minlength="12" required></div>
+  <div><button class="btn sm">Change password</button></div></form><p class="muted" style="font-size:13px">Changing it signs out every other device.</p></div>`}
+function changePw(){act(()=>call("POST","/api/password",{current:$("#pw0").value,next:$("#pw1").value}),"Password changed")}
+function logout(){fetch("/api/logout",{method:"POST",headers:{"x-gb":"1"}}).finally(()=>{S.authed=false;render()})}
+function vLogin(){return `<div class="wrap" style="max-width:420px;padding-block:60px;display:flex;flex-direction:column;gap:18px">
+  <span class="logo" role="img" aria-label="Gym Babes" style="height:64px;width:auto;align-self:flex-start"></span>
+  <h1 style="font-size:28px;font-weight:800">Back office sign-in</h1>
+  <form class="panel form" onsubmit="event.preventDefault();login()">
+    <div class="field"><label for="lu">Username</label><input class="inp" id="lu" autocomplete="username" autocapitalize="none" required></div>
+    <div class="field"><label for="lp">Password</label><input class="inp" id="lp" type="password" autocomplete="current-password" required></div>
+    <p class="err" id="le" role="alert" hidden></p>
+    <button class="btn block" id="lb">Sign in</button></form>
+  <p class="muted" style="font-size:13px">For the Gym Babes team only. Repeated wrong attempts lock sign-in for 15 minutes.</p></div>`}
+async function login(){const b=$("#lb");b.disabled=true;b.textContent="Signing in…";
+  try{const r=await fetch("/api/login",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({username:$("#lu").value,password:$("#lp").value})});const d=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(d.error||"Sign-in failed");S.authed=true;S.user=$("#lu").value.trim().toLowerCase();await reload()}
+  catch(e){b.disabled=false;b.textContent="Sign in";const x=$("#le");x.hidden=false;x.textContent=e.message}}
+function render(){const app=$("#app");
+  if(S.authed===null){app.innerHTML=`<div class="wrap empty" style="padding-block:80px">Loading…</div>`;return}
+  if(!S.authed){app.innerHTML=vLogin();return}
+  if(!S.loaded){app.innerHTML=`<div class="wrap empty" style="padding-block:80px">Loading orders…</div>`;return}
+  app.innerHTML=vAdmin();}
+(async function boot(){S.authed=null;render();try{const r=await fetch("/api/me");if(r.ok){S.user=(await r.json()).user;S.authed=true;await reload()}else{S.authed=false;render()}}catch(e){S.authed=false;render()}
+  setInterval(()=>{if(S.authed&&!document.hidden&&!document.activeElement?.matches?.("input,textarea,select"))reload().catch(()=>{})},60000)})();
+
+</script>
+</body></html>
